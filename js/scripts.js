@@ -7,12 +7,23 @@
 function Player(mark, turn) {
     this.mark = mark;
     this.turn = turn;
-    this.clicks = [6, 3, 1, 0, 5];
+    this.clicks = [];
 }
 
 
 
-Player.prototype.amIWinner = function () {
+Player.prototype.changeTurn = function () {
+    let turn = this.turn
+    if (turn === true) {
+        turn = false;
+    } else if (turn === false) {
+        turn = true;
+    }
+    this.turn = turn;
+}
+
+
+Player.prototype.amIWinner = function (player) {
     let clicks = this.clicks
     let message;
     winningCombos.forEach(function (winCombo) {
@@ -23,64 +34,72 @@ Player.prototype.amIWinner = function () {
             }
         })
         if (counter === 3) {
-            message = "You're a winner!";
+            message = "Congratulations" + player + "You're a winner!";
         }
     })
     return message;
 }
 
-
+let playerOne = new Player("🤓", true);
+let playerTwo = new Player("😎", false);
 
 function didIDraw() {
     let totalClicks = playerOne.clicks.length + playerTwo.clicks.length
-    if (totalClicks === 9) {
+    if (totalClicks === 10) {
         console.log('draw');
     }
 }
 
 
 const winningCombos = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [0, 4, 8],
-    [2, 4, 6]
+    ["a1", "a2", "a3"],
+    ["b1", "b2", "b3"],
+    ["c1", "c2", "c3"],
+    ["a1", "b1", "c1"],
+    ["a2", "b2", "c2"],
+    ["a1", "b2", "c3"],
+    ["a3", "b2", "c1"],
+    ["a3", "b3", "c3"]
 ]
-
-const playerOneClicks = [];
-const playerTwoClicks = [];
-
-
-// function loopWinner() {
-//     let win = winningCombo;
-//     playerOneClicks.forEach(win) {
-//         if (playerOneClicks.includes(win)) {
-
-//         }
-
-//     }
-// }
-
-
-
-
-
-
-
-let playerOne = new Player("X");
-let playerTwo = new Player("O");
-
-
-
-
 
 //User Interface Logic
 
 
-//Code For Testing
-// console.log(playerTwo.mark);
-// console.log(winningCombo[4]);
-// console.log(playerOne.amIWinner());
-console.log(didIDraw());
+window.addEventListener("load", function () {
+
+    const cells = document.querySelectorAll('.cell');
+    cells.forEach(function (cell) {
+        cell.addEventListener("click", cellClick)});
+
+
+
+
+    document.querySelector('.btn-reset').addEventListener("click", function () {
+        window.location.reload();
+    });
+    
+    
+
+});
+
+
+function cellClick (event) {
+   let cell = document.getElementById(event.target.id);
+   let player; 
+   if (playerOne.turn === true) {
+    player = playerOne;
+   } else {
+    player = playerTwo;
+   }
+   player.clicks.push(event.target.id);
+   if (playerOne.turn === true) {
+    cell.innerHTML="😎"
+   } else {
+    cell.innerHTML="🤓"
+   }
+   console.log(player.amIWinner(player));
+   playerOne.changeTurn();
+   playerTwo.changeTurn();
+
+}
+    

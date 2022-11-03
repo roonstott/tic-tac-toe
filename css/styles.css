@@ -1,10 +1,26 @@
 .cell {
-    border: 5px solid;
+    border: 2.5px solid;
     width: 100px;
     height: 100px;
     cursor: pointer;
+    font-size: 65px;
 }
 
+#a1, #b1, #c1 {
+    border-left: none;
+}
+
+#a3, #b3, #c3 {
+    border-right: none;
+}
+
+#a1, #a2, #a3 {
+    border-top: none;
+}
+
+#c1, #c2, #c3 {
+    border-bottom: none;
+}
 #container {
     display: grid;
     grid-template-columns: repeat(3, 100px);
@@ -24,6 +40,13 @@ body {
     background-color: rgb(35, 128, 210);
 }
 
-#bts-reset {
+#btn-reset {
     border-radius: 10px;
+    margin-top: 74.891px;
 }
+
+h1{
+    margin-bottom: 7%;
+    font-size: 100px;
+}
+
