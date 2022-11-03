@@ -1,0 +1,29 @@
+.cell {
+    border: 5px solid;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+
+#container {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    width: 300px;
+    margin: auto;
+}
+
+#gameBoard {
+    text-align: center;
+}
+
+body {
+    text-align: center;
+    padding-top: 40px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+    background-color: rgb(35, 128, 210);
+}
+
+#bts-reset {
+    border-radius: 10px;
+}
