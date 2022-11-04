@@ -106,8 +106,6 @@ function cellClick (event) {
 }
     
 function gameStatus() {
-    console.log(playerOne) 
-    console.log(playerTwo)
     if (didIDraw()) {
         Game.gameOver = true
         return "The Game Is A Draw"
